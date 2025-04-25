@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web‑NER Demo</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    textarea { width: 100%; height: 150px; }
+    .checkboxes { margin: 1em 0; }
+    .checkboxes label {
+      margin-right: 1em;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      background: #eee;
+      cursor: pointer;
+    }
+    /* will override when JS adds .active */
+    .checkboxes label.active {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Named Entity Recognition</h1>
+  <form action="{{ url_for('ner') }}" method="post">
+    <label for="text">Enter text (150–200 words):</label><br>
+    <textarea id="text" name="text">{{ request.form.text or '' }}</textarea><br>
+
+    <div class="checkboxes">
+      <strong>Select entity types to highlight:</strong><br>
+      {% for label in labels %}
+        <label id="lab-{{ label }}">
+          <input type="checkbox" name="entities" value="{{ label }}"
+            {% if label in request.form.getlist('entities') %}checked{% endif %}>
+          {{ label }}
+        </label>
+      {% endfor %}
+    </div>
+
+    <button type="submit">Process</button>
+  </form>
+
+  <script>
+    // Dynamically color selected labels to their hex:
+    const colors = {{ colors|tojson }};
+    document.querySelectorAll('.checkboxes input').forEach(cb => {
+      const lab = document.getElementById('lab-'+cb.value);
+      function update() {
+        if(cb.checked) {
+          lab.classList.add('active');
+          lab.style.backgroundColor = colors[cb.value];
+        } else {
+          lab.classList.remove('active');
+          lab.style.backgroundColor = '#eee';
+        }
+      }
+      cb.addEventListener('change', update);
+      update();
+    });
+  </script>
+</body>
+</html>
