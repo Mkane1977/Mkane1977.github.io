@@ -4,7 +4,8 @@ import re
 import PyPDF2
 from docx import Document as DocxDocument
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", template_folder="templates")
+
 
 # 1) Load spaCy model once
 nlp = spacy.load("en_core_web_sm")
