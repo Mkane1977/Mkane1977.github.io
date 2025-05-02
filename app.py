@@ -4,7 +4,7 @@ import re
 import PyPDF2
 from docx import Document as DocxDocument
 
-app = Flask(__name__, static_folder="static", template_folder="templates")
+app = Flask(__name__, template_folder="templates")
 
 
 # 1) Load spaCy model once
