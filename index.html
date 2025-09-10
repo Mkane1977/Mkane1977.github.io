@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mercury Kane — Dynamic Time‑Based Webpage</title>
-  <meta name="description" content="A simple HTML + JavaScript page that changes background color based on the current time of day." />
+  <meta name="description" content="A simple HTML and JavaScript page that changes background color based on the current time of day." />
   <style>
     :root {
       --bg: #ffffff;
@@ -91,8 +91,8 @@
 <body>
   <noscript>
     <p style="padding:1rem;background:#fff3cd;border:1px solid #ffeeba;border-radius:8px;max-width:42rem;margin:1rem auto;">
-      This page uses JavaScript to change its background color based on the current time of day.
-      Please enable JavaScript to see the dynamic behavior.
+      This page uses JavaScript to change the background color based on the current time of day.
+     
     </p>
   </noscript>
 
@@ -100,7 +100,7 @@
     <h1>Mercury Kane</h1>
     <p class="pill" aria-label="Course">COP 4813 Web Applications Programming</p>
     <p class="pill" aria-label="Major">Major: Computer Science</p>
-    <h2>Welcome to my dynamic webpage!</h2>
+    <h2>Welcome to my dynamic webpage.</h2>
 
     <section aria-labelledby="status-heading" style="margin-top:0.5rem">
       <h3 id="status-heading">Status</h3>
@@ -129,12 +129,12 @@
         <div class="row">
           <button id="resetBtn" type="button" title="Return to your actual local time">Reset to current time</button>
         </div>
-        <p style="margin:0">Tip: Drag the slider to preview morning/afternoon/evening/night instantly.</p>
+        <p style="margin:0">Drag the slider to preview morning/afternoon/evening/night instantly.</p>
       </div>
     </details>
 
     <footer>
-      Built with plain HTML, CSS, and JavaScript. No frameworks required.
+      Built with plain HTML, CSS, and JavaScript. No frameworks.
     </footer>
   </main>
 
@@ -154,7 +154,7 @@
     const hourLabel = document.getElementById("hourLabel");
     const resetBtn = document.getElementById("resetBtn");
 
-    let simulated = false;   // if true, we use slider hour; if false, we use real time
+    let simulated = false;   // if true, use slider hour; if false, use real time
     let tickHandle = null;
 
     function pad2(n) { return n.toString().padStart(2, "0"); }
@@ -176,7 +176,7 @@
     }
 
     function startClock() {
-      // Update immediately, then every second
+      // Update immediately. then every second
       tick();
       if (tickHandle) clearInterval(tickHandle);
       tickHandle = setInterval(tick, 1000);
@@ -197,7 +197,7 @@
       applyThemeFromHour(new Date().getHours());
     });
 
-    // First paint: set hour label to "current", apply initial theme, and start clock
+    // First paint = set hour label to "current", apply initial theme, and start clock.
     hourLabel.textContent = "current";
     applyThemeFromHour(new Date().getHours());
     startClock();
